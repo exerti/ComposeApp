@@ -1,41 +1,41 @@
 package com.example.acase
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.acase.databinding.ActivityXmlUseBinding
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 class XmlUseActivity : AppCompatActivity() {
-
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityXmlUseBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityXmlUseBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        // 创建简单布局，避免复杂的Navigation和资源命名空间问题
+        setContentView(R.layout.activity_xml_use_simple)
 
-        setSupportActionBar(binding.toolbar)
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        
+        // 设置返回按钮
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "XML Use Activity"
 
-        val navController = findNavController(R.id.nav_host_fragment_content_xml_use)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
+        // FAB点击事件
+        findViewById<FloatingActionButton>(R.id.fab)?.setOnClickListener { view ->
+            Snackbar.make(view, "This is XML-based Activity with ViewBinding", Snackbar.LENGTH_LONG)
+                .setAction("OK", null)
+                .show()
         }
+        
+        // 显示传递的数据
+        val extraValue = intent.getStringExtra("key") ?: "No data"
+        findViewById<TextView>(R.id.textView)?.text = "Received data: $extraValue\n\nThis Activity demonstrates:\n• XML layouts\n• Material Design components\n• Activity navigation from Compose"
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_xml_use)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+        onBackPressed()
+        return true
     }
 }

@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "ComposeDemo"
 include(":app")
- 
+include(":infra")
+include(":case")

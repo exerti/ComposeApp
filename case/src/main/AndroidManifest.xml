@@ -3,6 +3,13 @@
 
     <application>
         <activity
+            android:name=".MainPageActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ComposeDemo" />
+        <activity
+            android:name=".TQList.TQCardActivity"
+            android:exported="false" />
+        <activity
             android:name=".XmlUseActivity"
             android:exported="false"
             android:theme="@style/Theme.ComposeDemo" />

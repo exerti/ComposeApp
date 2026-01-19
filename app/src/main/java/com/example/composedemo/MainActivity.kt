@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.acase.TQList.TQCardActivity
 import com.example.composedemo.ui.theme.ComposeDemoTheme
 
 class MainActivity : ComponentActivity() {
@@ -117,6 +118,11 @@ fun ActivityList(modifier: Modifier = Modifier, onNavigate: (ActivityDestination
             name = "XML Use Activity",
             description = "Navigation with XML and ViewBinding",
             activityClass = com.example.acase.XmlUseActivity::class.java
+        ),
+        ActivityDestination(
+            name = "TQ Card Activity",
+            description = "Card activity demonstration",
+            activityClass = TQCardActivity::class.java
         )
     )
 
